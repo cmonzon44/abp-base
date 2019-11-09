@@ -18,6 +18,8 @@ using Abp.Dependency;
 using Abp.Json;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
+using ABP_Base.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace ABP_Base.Web.Host.Startup
 {
@@ -34,6 +36,9 @@ namespace ABP_Base.Web.Host.Startup
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+
+            services.AddDbContext<ABP_BaseDbContext>(opts => opts.UseSqlServer("Server=DESKTOP-L5V69FI; Database=ABP_BaseDb; Trusted_Connection=True;"));
+             
             //MVC
             services.AddControllersWithViews(
                 options =>
